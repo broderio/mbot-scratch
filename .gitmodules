@@ -1,0 +1,6 @@
+[submodule "lib/gui"]
+	path = lib/gui
+	url = https://github.com/broderio/mbot-scratch-gui.git
+[submodule "lib/vm"]
+	path = lib/vm
+	url = https://github.com/broderio/mbot-scratch-vm.git
