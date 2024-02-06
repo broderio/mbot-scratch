@@ -8,6 +8,21 @@
 
 void handleSession(websocket::stream<tcp::socket>& ws) {
     std::cout << "Session started" << std::endl;
+    // ws.write(net::buffer("Connected to server"));
+    ws.accept();
+    while (ws.is_open()) {
+        try {
+            beast::flat_buffer buffer;
+            ws.read(buffer);
+            std::string message = beast::buffers_to_string(buffer.data());
+            std::cout << "Received: " << message << std::endl;
+            ws.write(net::buffer(message));
+        } catch (const std::exception& e) {
+            std::cerr << "Error: " << e.what() << std::endl;
+            break;
+        }
+    
+    }
 }
 
 int main(int argc, char* argv[]) {
